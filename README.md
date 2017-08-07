@@ -2,7 +2,7 @@
 
 Microservice architectural pattern breaks a monolithic application into separate individual services. In order for a service to interact with another service, it needs to know the host address and the port where a service is listening to requests. One approach to solve this fundamental problem is to configure the host and port details of the service in some configuration file which needs to be used by the client service to locate that particular service. But this approach works fine only with a small stand alone application or setup. But as the number of services and service instances start increasing/decreasing, as in a native cloud environment, this approach would eventually fail.
 
-Hence, we need some approach which is dynamic in nature and can solve the purpose of locating a dynamic service instance in a typical cloud environment. This is the situation where a service discovery approach proves to be handy. A discovery server in cloud native environment, is a registry server that acts as a source of truth and allows services to register themselves with it, as and when they appear and disapear.
+Hence, we need some approach which is dynamic in nature and can solve the purpose of locating a dynamic service instance in a typical cloud environment. This is the situation where a service discovery approach proves to be handy. A discovery server in cloud native environment, is a registry server that acts as a source of truth and allows services to register themselves with it, as and when they appear and disappear.
 
 Service discovery provides
 1) a way for a service to register itself: 
@@ -12,7 +12,10 @@ When a service instance comes up, it can call the service discovery to inform it
 
 3) a way for a client or an application to find other services.
   
-4) a way to check the health of a service and remove the unhealthy instances from it's registry. So an application service would implement a health check which is typically, a REST endpoint which would be invoked by the service discovery server to check the health of a service instance.
+4) a way to check the health of a service and remove the unhealthy instances from it's registry. So an application service would implement a health check which is typically, a REST endpoint which would be invoked by the service discovery server to check the health of a service instance. Set the property eureka.client.health.check.enabled.
+
+There are several different areas where one can configure the Spring Cloud Eureka. The top three categories are "eureka.server.*", "eureka.client.*" and "eureka.instance.*". Eureka server may connect to the actuator endpoint /health
+ 
 
 The key components which are involved in a service discovery, are
 1) The Discovery Server
